@@ -39,9 +39,6 @@ complete with a corresponding "Notification" class to keep the organization and 
 Once that was done, I started exploring one of the most important features - sending notifications from my Android phone to the ESP32!
 I'll need an app that will run in the background, capture my notifications, and then send them to ESP32 via Bluetooth. Speaking of which, there are some relevant Flutter libraries for this, so that'll hopefully be easy when I get around to it. 
 
-![image](https://user-images.githubusercontent.com/27019702/161512861-fb9deb21-5405-496d-8eca-b32b2e57fefd.png)
-
-
 On the ESP32 side of things, I started setting up Bluetooth connectivity, which seemed super easy at first. 
 However, things are never as easy as they seem, and I quickly found that the Bluetooth stops working once I start outputting video....
 
