@@ -71,6 +71,10 @@ Software-specific "What I have now" list:
 
 
 
+https://user-images.githubusercontent.com/27019702/161516270-00c9a139-ab8d-40a9-a35c-806e2149c768.mp4
+
+
+
 As for a SOFTWARE-SPECIFIC TODO list, here's how things are looking:
 * Theme support (with basic light, basic dark, and cyberpunk)
 * "Apps"
