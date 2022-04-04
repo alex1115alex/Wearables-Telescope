@@ -46,7 +46,7 @@ However, things are never as easy as they seem, and I quickly found that the Blu
 
 Queue me spending about 8 hours trying to diagnose the problem. I tried using BLE instead of Classic, investigated using a separate bluetooth module, and even manually separated the bluetooth and video output tasks to separate cores with every possible configuration. In a last-ditch effort, I tried using my TinyPICO instead... and it paired with my phone perfectly. Turns out, the generic ESP32 just didn't have enough RAM to pair with bluetooth. Goddamnit.
 
-You would think it would be smooth sailing from there, but it turns out that while the TinyPICO has enough memory for bluetooth pairing, it doesn't have enough to maintain a connection. Fortunately, I found that I could reduce memory usage by freeing the memory pertaining to BLE which fixed the problem. Still though, that's not a lot of memory to work with. I think I'll have to investigate freeing the memory pertaining to the WiFi module and other unused componenets. Anyway, it works! 
+You would think it would be smooth sailing from there, but it turns out that while the TinyPICO has enough memory for bluetooth pairing, it doesn't have enough to maintain a connection. Fortunately, I found that I could reduce my memory usage by freeing the memory pertaining to BLE. This fixed the problem. Still though, that's not a lot of memory to work with. I think I'll have to investigate freeing other unused module's memory. Anyway, it works! 
 
 
 https://user-images.githubusercontent.com/27019702/161512519-5b5b7ee5-1f59-4cb5-8c88-aafe5ebc0273.mp4
