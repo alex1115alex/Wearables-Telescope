@@ -121,7 +121,7 @@ Picking up from last week, I started doing real work on the app. Here were the M
 ### Listen for relevant notifications and send them to the ESP32
 
 * This was *mostly* straightforward, with a couple exceptions:
-* * I needed to make a blacklist for app packagenames because some apps spam notifications. The winner on my shitlist here is "com.android.systemui" which gives me a new notification every 60 seconds to tell me how long it'll take until my phone is done charging.
+* * I needed to make a blacklist for app packagenames because some apps spam notifications. The winner on my shitlist here is "com.samsung.android.app.smartcapture" which sends a new notification every second to remind you that you're recording your screen.
 * * I encountered a bug in the "notifications" flutter package which caused the app to crash upon receiving a GMail notification. The fix required I do something absolutely disgusting: fork a dependency to edit a single line in a file.
 
 ### Theme support
