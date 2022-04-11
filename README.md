@@ -88,6 +88,10 @@ As for a SOFTWARE-SPECIFIC TODO list, here's how things are looking:
 
 ## UPDATE #1
 
+
+https://user-images.githubusercontent.com/27019702/162689365-c6cba215-2a70-41da-a39b-cae65eb1acbe.mp4
+
+
 I was able to make a lot of progress on the software this week. It's not exactly everything I wanted to do, but I took care of the difficult problems meaning it should be somewhat easy to add the remaining features sometime down the line. As such, from now on I'll be working on the hardware.
 
 Picking up from last week, I started doing real work on the app. Here were the MVP requirements along with some notes on each: 
