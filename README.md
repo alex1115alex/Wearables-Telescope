@@ -101,6 +101,12 @@ Picking up from last week, I started doing real work on the app. Here were the M
 * The pairing function just reruns itself whenever there isn't a current connection. This is a really ugly solution, but works provided you don't reload the code in Flutter, which isn't something I'm sure a normal user (me) would be able to reproduce with a release build.
 * * On the ESP32 side of things, I found the ESP32-PICO-D4 chip (the one the TinyPICO runs on) isn't able to gracefully accept new connections after one is dropped, or at least there isn't an easy way to do this. As such, I went the "lovably janky" route and just have the ESP32 do a full reset whenever the bluetooth connection is lost.
 
+* I also developed a message queueing system. The rundown of how this works:
+* * When a message is sent (such as a time/weather sync, notification, etc), the connection status is checked.
+* * * If the connection is good, the message is sent. Easy.
+* * * If the connection isn't good, the message is added to a queue. The queue (currently) stores up to 10 messages, after which the oldest is removed when a new message is added.
+* * * * The contents of the queue are sent to the ESP32 the next time it connects
+
 ### On boot (and periodically) send the current time + outdoor temperature to the ESP32 
 
 * This is pretty self explanatory (and simple on my end!), but if you're interested, I merged time and temperature into a single "sync" api call.
@@ -132,7 +138,8 @@ As I said, the next and final week will be all about the hardware. I haven't got
 * * I'm debating taking the magnifying housing off the microdisplay (you can see what I mean in the first few videos) and making my own custom one. 
 * * * Pros: The whole package would be much smaller (especially important when it's next to your eye).
 * * * Cons: Would be some extra effort, but more importantly would be extremely risky: I'd need to unclip the ZIF connector on the microdisplay which I've never done before. If I mess up, I can't get another in time for the due date.
-* For the button to cycle notifications, my job's already simplified by the fact that the ESP32's GPIOs have built-in pullup resistors.
-* I'm exploring button types:
-* * Touch sensitive button using a nail (or similar) - would be cool but no tactile feedback
+* Button
+* * For the button to cycle notifications, my job's already simplified by the fact that the ESP32's GPIOs have built-in pullup resistors.
+* * I'm exploring button types:
+* * * Touch sensitive button using a nail (or similar) - would be cool but no tactile feedback
 * * * Cherry MX Brown switch - I have some on-hand and the tactile feedback would be hilarious. Might be too bulky though.
