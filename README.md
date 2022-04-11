@@ -122,6 +122,9 @@ Picking up from last week, I started doing real work on the app. Here were the M
 
 * This was *mostly* straightforward, with a couple exceptions:
 * * I needed to make a blacklist for app packagenames because some apps spam notifications. The winner on my shitlist here is "com.samsung.android.app.smartcapture" which sends a new notification every second to remind you that you're recording your screen.
+
+![image](https://user-images.githubusercontent.com/27019702/162689987-94b97060-01d0-45dd-826d-0825fec3e015.png)
+
 * * I encountered a bug in the "notifications" flutter package which caused the app to crash upon receiving a GMail notification. The fix required I do something absolutely disgusting: fork a dependency to edit a single line in a file.
 
 ### Theme support
@@ -129,6 +132,8 @@ Picking up from last week, I started doing real work on the app. Here were the M
 * I made all the colors pull from a "Theme" object which includes a textColor, backgroundColorPrimary, backgroundColorSecondary, and flair. 
 * Premade themes: basic light, basic dark, cyberpunk
 * I am horrible with matching colors especially when limited to an 8bit color set that doesn't even display correctly
+
+![image](https://user-images.githubusercontent.com/27019702/162690140-6ae9ee4c-d482-4384-990c-7257de7a5384.png)
 
 ## Let's talk hardware
 
