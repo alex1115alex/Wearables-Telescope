@@ -85,3 +85,54 @@ As for a SOFTWARE-SPECIFIC TODO list, here's how things are looking:
 * Finish the following API calls
 * * time (Finish the logic behind this - right now it just uses a dummy value regardless of what is sent via bluetooth
 * * temperature (temperature is stored as a variable but never used. This needs automatic syncing... mostly work for Android app)
+
+## UPDATE #1
+
+I was able to make a lot of progress on the software this week. It's not exactly everything I wanted to do, but I took care of the difficult problems meaning it should be somewhat easy to add the remaining features sometime down the line. As such, from now on I'll be working on the hardware.
+
+Picking up from last week, I started doing real work on the app. Here were the MVP requirements along with some notes on each: 
+
+### On boot, pair with the ESP32 via bluetooth
+
+* I set the app up so that it starts scanning for bluetooth on boot and tries to connect to any device with the name "ESP32test". 
+
+### Automatically reconnect to the ESP32 if connection is lost
+
+* The pairing function just reruns itself whenever there isn't a current connection. This is a really ugly solution, but works provided you don't reload the code in Flutter, which isn't something I'm sure a normal user (me) would be able to reproduce with a release build.
+* * On the ESP32 side of things, I found the ESP32-PICO-D4 chip (the one the TinyPICO runs on) isn't able to gracefully accept new connections after one is dropped, or at least there isn't an easy way to do this. As such, I went the "lovably janky" route and just have the ESP32 do a full reset whenever the bluetooth connection is lost.
+
+### On boot (and periodically) send the current time + outdoor temperature to the ESP32 
+
+* This is pretty self explanatory (and simple on my end!), but if you're interested, I merged time and temperature into a single "sync" api call.
+
+* There was a bit of a struggle here in that the ESP32's real-time clock isn't exactly very accurate... especially when you have a contant composite video stream AND a bluetooth connection messing with the timings and whatnot. To be honest I don't 100% know if those two things are messing with it - I'm not a hardware guy - so I "fixed" this by just syncing every 10 minutes. 
+* * I haven't gotten much of a chance to see how this affects my phone's battery life, but I can't imagine it'll be pretty.
+
+### Listen for relevant notifications and send them to the ESP32
+
+* This was *mostly* straightforward, with a couple exceptions:
+* * I needed to make a blacklist for app packagenames because some apps spam notifications. The winner on my shitlist here is "com.android.systemui" which gives me a new notification every 60 seconds to tell me how long it'll take until my phone is done charging.
+* * I encountered a bug in the "notifications" flutter package which caused the app to crash upon receiving a GMail notification. The fix required I do something absolutely disgusting: fork a dependency to edit a single line in a file.
+
+### Theme support
+
+* I made all the colors pull from a "Theme" object which includes a textColor, backgroundColorPrimary, backgroundColorSecondary, and flair. 
+* Premade themes: basic light, basic dark, cyberpunk
+* I am horrible with matching colors especially when limited to an 8bit color set that doesn't even display correctly
+
+## Let's talk hardware
+
+As I said, the next and final week will be all about the hardware. I haven't gotten started on any concrete designs, but it's been a topic on my mind for the last while, so I'll share some thoughts:
+
+* The original plan was a 3Dprinted pair of glasses, or sunglasses with a custom arm. 
+* * Benefits: Can distribute tech/battery between the arms of the glasses. Beamsplitter built into the lens.
+* * Cons: Incompatible with prescription lenses. Will look like a goober.
+
+* The new plan is a clip-on system like with my first smartglasses project, albeit with some sort of system to keep it neatly fixed to my current frames.
+* * I'm debating taking the magnifying housing off the microdisplay (you can see what I mean in the first few videos) and making my own custom one. 
+* * * Pros: The whole package would be much smaller (especially important when it's next to your eye).
+* * * Cons: Would be some extra effort, but more importantly would be extremely risky: I'd need to unclip the ZIF connector on the microdisplay which I've never done before. If I mess up, I can't get another in time for the due date.
+* For the button to cycle notifications, my job's already simplified by the fact that the ESP32's GPIOs have built-in pullup resistors.
+* I'm exploring button types:
+* * Touch sensitive button using a nail (or similar) - would be cool but no tactile feedback
+* * * Cherry MX Brown switch - I have some on-hand and the tactile feedback would be hilarious. Might be too bulky though.
