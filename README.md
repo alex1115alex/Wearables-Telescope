@@ -152,3 +152,35 @@ As I said, the next and final week will be all about the hardware. I haven't got
 * * I'm exploring button types:
 * * * Touch sensitive button using a nail (or similar) - would be cool but no tactile feedback
 * * * Cherry MX Brown switch - I have some on-hand and the tactile feedback would be hilarious. Might be too bulky though.
+
+## UPDATE #2
+
+I know I wanted to focus exclusively on hardware, but this last week ended up being something of a mix. There were mainly some bugs with the software I needed to fix before being happy with my work, but I also needed to add software support for the physical "next" button, as well as support for displaying a vehicle's speed/RPM data! Such data will need to be pulled from a car's ODBII port via Bluetooth.
+
+That Bluetooth api works like so: {"type":"car","speed":"88","rpm":"5500"}
+
+In terms of hardware, here's what I worked on in no specific order:
+
+### Power/battery switch
+
+McGuckin's didn't have a small enough power switch for me, so I ended up ripping a tiny one out of a AA battery holder I had laying around. The only downside of my current design is that the switch needs to be "ON" in order for the battery to charge, but that's something I can tolerate for now.
+
+It's also worth noting that the display gets messed up whenever we switch from USB -> Battery power, or vice versa. To counteract this, I just wrote some code to monitor weather the USB port is plugged in, and have the ESP32 reset itself whenever the USB state changes. Not a super elegant solution, but neither is anything in this entire repo.
+
+### Physical next button
+
+I decided to go with a Cherry MX Brown keyswitch for this. Nothing much interesting to say here. It's a button. You press it and ba-da-bing ba-da-boom it does a thing.
+
+### The shell
+
+I spent a whole lot of time (the past 48 hours) doing the following:
+
+1. Design model of eyepiece/electronics case
+2. Test sizing with real hardware
+3. Identify issues, go back to step 1.
+
+That said, I'll save you the time reading about all my hassles with this as I've pretty much summed up the gist above. I'll have the .STL files in this repo if you're interested.
+
+
+
+### 
