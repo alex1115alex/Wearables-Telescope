@@ -179,8 +179,10 @@ I spent a whole lot of time (the past 48 hours) doing the following:
 2. Test sizing with real hardware
 3. Identify issues, go back to step 1.
 
-That said, I'll save you the time reading about all my hassles with this as I've pretty much summed up the gist above. I'll have the .STL files in this repo if you're interested.
+I'll save you the time reading about all my hassles with this as I've pretty much summed up the gist above. I'll have the .STL files in this repo if you're interested.
+
+The one other thing I want to say here is that I'm not entirely happy with the current design, and that's almost entirely due to the battery I have (which is very large and rectangular). I didn't want to drop more cash on a better fitting battery so it'll do for now, however, when I pick up this project again over the summer the first thing I'm doing is swapping out the battery with something longer and thinner.
+
+### Trimming everything down & getting the hardware into the shell
 
 
-
-### 
