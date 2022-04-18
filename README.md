@@ -167,9 +167,15 @@ McGuckin's didn't have a small enough power switch for me, so I ended up ripping
 
 It's also worth noting that the display gets messed up whenever we switch from USB -> Battery power, or vice versa. To counteract this, I just wrote some code to monitor weather the USB port is plugged in, and have the ESP32 reset itself whenever the USB state changes. Not a super elegant solution, but neither is anything in this entire repo.
 
+![2022-04-18_07-18](https://user-images.githubusercontent.com/27019702/163813879-b5082a47-ce19-476b-99d5-5b495163218b.png)
+
 ### Physical next button
 
 I decided to go with a Cherry MX Brown keyswitch for this. Nothing much interesting to say here. It's a button. You press it and ba-da-bing ba-da-boom it does a thing.
+
+
+https://user-images.githubusercontent.com/27019702/163814153-a92c5231-75ce-44cb-83cb-9cef17440e57.mp4
+
 
 ### The shell
 
@@ -183,6 +189,20 @@ I'll save you the time reading about all my hassles with this as I've pretty muc
 
 The one other thing I want to say here is that I'm not entirely happy with the current design, and that's almost entirely due to the battery I have (which is very large and rectangular). I didn't want to drop more cash on a better fitting battery so it'll do for now, however, when I pick up this project again over the summer the first thing I'm doing is swapping out the battery with something longer and thinner.
 
+![2022-04-18_07-20](https://user-images.githubusercontent.com/27019702/163814092-32551544-15e1-476d-9454-88733ab4ef7b.png)
+
 ### Trimming everything down & getting the hardware into the shell
 
+The shell is *almost* there. Remaining problems:
+* Doesn't fit the keyswitch properly
+* * The hole needs minor resizing + relocating
+* No place for the power switch
+* * It's just crammed in for now
+* Doesn't have a top cover
+* Display driver doesn't sit securely
+* * Minor sizing adjustments needed
+
+This was pretty straightforward but also incredibly obnoxious. In order to keep print times within 3 hours I needed to keep the walls of the shell at a mere 1mm thick, and as a result the shells had a tendency to bend and crack and split. When I come back to this project I'll need to do some upgrades to the shell, because the "print/wait3hours/test" iteration cycle really limited me in terms of how much I could accomplish within a week.
+
+![top](https://user-images.githubusercontent.com/27019702/163814189-ac4d822d-6f6f-43ee-8975-133b26bfbff0.jpg)
 
