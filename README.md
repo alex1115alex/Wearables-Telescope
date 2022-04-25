@@ -206,3 +206,23 @@ This was pretty straightforward but also incredibly obnoxious. In order to keep 
 
 ![top](https://user-images.githubusercontent.com/27019702/163814189-ac4d822d-6f6f-43ee-8975-133b26bfbff0.jpg)
 
+## Update #3
+
+To finish everything off, this week consisted of a major shell overhaul, adding some buttons to the app, and (FINALLY) horizontally flipping the display.
+
+...I have spent the past 8 hours flipping this display. 
+
+### Some things I've learned, and problems I encountered:
+
+* The Adafruit_GFX library has no built-in way to horizontally flip the output
+* Adafruit_GFX draws things like lines/shapes/etc using the drawPixel function
+* It ALSO draws text using the drawPixel function*
+
+From reading that, you would thing we could just reverse the x coordinates in the drawPixel function, right? WRONG! As it turns out, the drawPixel function is only used for text using the default font+size, which is far too small to be readable. Plus, being stuck on 1 font size would be awful.
+
+If you dig into the Adafruit_GFX library, non-default text is drawn to the screen directly in the drawChar function, which basically means that you get some funky effects when trying to reverse the x coordinates; you'll still get the normal characaters, just printed in reverse. As such, I went online and found a horizontally mirrored Sans font, and converted that to a format the Adafruit_GFX library could read. The mirrored font looks fine before flipping the pixels, but caused some graphical errors once flipped.
+
+So, I scrapped the flipping idea and went with something even more hacky: make a wrapper for the videoOut.print(text) function that reverses the string before calling print. In other words, screw screen mirroring - I'll just print everything backwards with a reversed font.
+
+Ah, 
+* When text is NOT drawn using the defaults, it draws the text to the sc
