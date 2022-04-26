@@ -214,15 +214,19 @@ To finish everything off, this week consisted of a major shell overhaul, adding 
 
 ### Some things I've learned, and problems I encountered:
 
-* The Adafruit_GFX library has no built-in way to horizontally flip the output
+* The Adafruit_GFX library has no built-in way to horizontally flip the output, opting to have that feature added by the display driver's library
+* * ESP_8_BIT_Composite_Video (my display library) does NOT have this feature
 * Adafruit_GFX draws things like lines/shapes/etc using the drawPixel function
 * It ALSO draws text using the drawPixel function*
 
-From reading that, you would thing we could just reverse the x coordinates in the drawPixel function, right? WRONG! As it turns out, the drawPixel function is only used for text using the default font+size, which is far too small to be readable. Plus, being stuck on 1 font size would be awful.
+From reading that, you would thing we could just reverse the x coordinates in the drawPixel function, right? WRONG! As it turns out, the drawPixel function is ONLY used for text using the default font + size, which is far too small to be readable. Plus, being stuck on 1 font size would be awful.
 
 If you dig into the Adafruit_GFX library, non-default text is drawn to the screen directly in the drawChar function, which basically means that you get some funky effects when trying to reverse the x coordinates; you'll still get the normal characaters, just printed in reverse. As such, I went online and found a horizontally mirrored Sans font, and converted that to a format the Adafruit_GFX library could read. The mirrored font looks fine before flipping the pixels, but caused some graphical errors once flipped.
 
-So, I scrapped the flipping idea and went with something even more hacky: make a wrapper for the videoOut.print(text) function that reverses the string before calling print. In other words, screw screen mirroring - I'll just print everything backwards with a reversed font.
+So, I scrapped the flipping idea and went with something even more hacky: make a wrapper for the videoOut.print(text) function that reverses the string before calling print, AND handles text wrapping in reverse - manually. In other words, screw screen mirroring - I'll just print everything backwards with a reversed font.
 
-Ah, 
-* When text is NOT drawn using the defaults, it draws the text to the sc
+## The shell
+
+The new shell is awesome 90% of the time. It's basically the original except made to be as small as possible (form fit to the parts), and built around a 3D model of the original Google Glass frame. Unfortunately, the piece that holds the glasses on your nose (I'll call it the "nose stick") broke off in class which prompted me to make some adjustments afterwards. First and obviously - reenforcing the nose sticks - which was stupidly easy. 
+
+The other problem was the device being all one piece. In the original new shell, if anything broke, the entire thing (besides the viewfinder) would need to be reprinted. Now, the viewfinder, computer module, and glasses are three separate parts held together by the M4 screw. Awesome! 
