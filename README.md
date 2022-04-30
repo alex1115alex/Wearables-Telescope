@@ -309,6 +309,6 @@ So, I scrapped the flipping idea and went with something even more hacky: make a
 
 ## The shell
 
-The new shell is awesome 90% of the time. It's basically the original except made to be as small as possible (form fit to the parts), and built around a 3D model of the original Google Glass frame. Unfortunately, the piece that holds the glasses on your nose (I'll call it the "nose stick") broke off in class which prompted me to make some adjustments afterwards. First and obviously - reenforcing the nose sticks - which was stupidly easy. 
+The new shell is awesome. It's basically the original except made to be as small as possible (form fit to the parts), and built around a 3D model of the original Google Glass frame. It really gets close to the original Google Glass!
 
-The other problem was the device being all one piece. In the original new shell, if anything broke, the entire thing (besides the viewfinder) would need to be reprinted. Now, the viewfinder, computer module, and glasses are three separate parts held together by the M4 screw. Awesome! 
+It comes in two pieces this time that can be screwed together - the "Computer" and "Glasses". This is a really awesome feature as it will allow me (and you!) to design your own "Glasses"... just use the same connector!
