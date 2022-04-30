@@ -78,7 +78,7 @@ This is an ESP32 derivative with a few key features:
 * Super power efficient AND has a very stable voltage output
 * Freaking tiny
 
-Get one from Amazon or https://unexpectedmaker.com/shop
+Get one at https://www.tinypico.com/buy
 
 ### Beamsplitting cube prism
 
@@ -88,13 +88,15 @@ I used a 10mm\*10mm cube, but you might want to consider getting a 15mm\*15mm cu
 
 Mine: https://www.aliexpress.com/item/2255800715557324.html
 
-### LiPo battery of your choice
-
 #### Potential money saving tip:
 
 I've heard you can use a triangular beamsplitter instead of a cube. It won't look as nice, but it can also save you ~$10.
 
 Link: https://www.aliexpress.com/item/4000032849513.html
+
+### a LiPo battery of your choice
+
+I used a 1100mah one fom Amazon, but feel free to get a smaller one (and optionally: modify the "Telescope Computer" model to securely fit it)
 
 ## Progress...
 
