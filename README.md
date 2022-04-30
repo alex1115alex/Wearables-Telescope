@@ -1,5 +1,7 @@
 # Project Telescope
 
+![image](https://user-images.githubusercontent.com/27019702/166100358-2a8c5e24-3cba-4de2-8207-f2f2cb567834.png)
+
 ## What's this?
 
 The "Telescope" is a DIY smartglass system similar to the Google Glass in form and technology.
