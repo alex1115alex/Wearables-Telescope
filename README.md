@@ -34,34 +34,41 @@ Lastly, VERY CAREFULLY slot the whole thing into the "Telescope Computer" module
 
 ![image](https://user-images.githubusercontent.com/27019702/166100176-5dd10037-f704-4ce8-812e-7dfde75a1828.png)
 
-3. Complete the the viewfinder module
+### Complete the the viewfinder module
 
-Remove the microdisplay from its original casing. You will need to temporarily disconnect the ZIF connector attaching the ribbon cable to the display module in order to do this. Also remove the original magnifying glass from the casing. 
+If you haven't done this already, remove the microdisplay from its original casing. You will need to temporarily disconnect the ZIF connector attaching the ribbon cable to the display module in order to do this. Also remove the original magnifying glass from the casing. 
 
 Before removing the casing:
+
 ![image](https://user-images.githubusercontent.com/27019702/166099372-432517a2-381f-477b-8b4a-06c0e811804b.png)
 
 Slide the magnifying glass into the front of the viewfinder you printed, and then glue the beamsplitting cube to the "tounge" using your favorite glass glue (make sure to use the same orientation as seen in the completed photo).
 
 Lastly, slide the microdisplay into the slot in the back.
 
-Complete:
+Complete (this picture is from an older version of the device, but the viewfinder is the same):
+
 ![image](https://user-images.githubusercontent.com/27019702/166099536-5d1daca7-eb95-48be-b324-0ac1c810783f.png)
 
+### Install the required libraries to the Arduino IDE & upload the code
+
+Libraries:
+* ESP_8_BIT_Composite_Video
+* Adafruit_GFX
 
 ## Notable parts list
 
-1. 960x540 Microdisplay
+### 960x540 Microdisplay
 
-This thing is pretty nifty. It's a .24" 540p microdisplay that would normally be used as a camera's viewfinder or for cheap FPV drone goggles. It only takes a composite video source which limits us in terms of what computers we can use for this thing, but, as luck would have it, the ESP32 (unofficially) supports composite video output.
+A .24" 540p microdisplay that would normally be used as a camera's viewfinder or for cheap FPV drone goggles. It only takes a composite video source which limits us in terms of what computers we can use for this thing, but, as luck would have it, the ESP32 (unofficially) supports composite video output.
 
 I got mine on AliExpress (https://www.aliexpress.com/item/4000958970634.html) but you might also be able to get it directly from the manufacturer if you know Chinese. The model is "FLCOS-SON-FL08".
 
-### Potential money saving tip:
+#### Potential money saving tip:
 
 Although I haven't found many other options, you don't necessarily need to use the SON-FL08. For example, I found another microdisplay by the same company called the "SON-FL02" which is lower resolution (but can be cheaper). The display library we're using only supports 240p anyway so that shouldn't matter. Doing this would require you modify the "Telescope Viewfinder" model, of course.
 
-2. TinyPICO
+### TinyPICO
 
 This is an ESP32 derivative with a few key features:
 
@@ -71,7 +78,7 @@ This is an ESP32 derivative with a few key features:
 
 Get one from Amazon or https://unexpectedmaker.com/shop
 
-3. Beamsplitting cube prism
+### Beamsplitting cube prism
 
 This is a cube that lets light through in all directions while also reflecting light 90 degrees from a single direction. It's a little hard to explain.
 
@@ -81,7 +88,7 @@ Mine: https://www.aliexpress.com/item/2255800715557324.html
 
 4. LiPo battery of your choice
 
-### Potential money saving tip:
+#### Potential money saving tip:
 
 I've heard you can use a triangular beamsplitter instead of a cube. It won't look as nice, but it can also save you ~$10.
 
