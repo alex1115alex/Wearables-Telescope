@@ -86,7 +86,7 @@ I used a 10mm\*10mm cube, but you might want to consider getting a 15mm\*15mm cu
 
 Mine: https://www.aliexpress.com/item/2255800715557324.html
 
-4. LiPo battery of your choice
+### LiPo battery of your choice
 
 #### Potential money saving tip:
 
