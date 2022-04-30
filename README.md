@@ -58,6 +58,10 @@ Libraries:
 * ESP_8_BIT_Composite_Video
 * Adafruit_GFX
 
+### Install the companion app (Android only) and open in
+
+The APK is in the repository. Just open the app and it will try to connect to the Telescope automatically.
+
 ## Notable parts list
 
 ### 960x540 Microdisplay
