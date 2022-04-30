@@ -24,7 +24,7 @@ Use an M4 screw to screw the pieces together.
 
 You may need to trim some of the wires coming from the microdisplay, but otherwise follow my amerature wiring diagram:
 
-[PHOTO HERE]
+![telescope wiring diagram](https://user-images.githubusercontent.com/27019702/166118811-e94d75ac-100d-4b00-a1df-2a38f8fd822b.png)
 
 The TinyPICO has a few ways you can attach a battery (information here: https://www.tinypico.com/gettingstarted#:~:text=POWER%20FROM%20BATTERY). Personally, I soldered the battery's leads to the pads on the back of the device because I accidentally destroyed the BAT pin.
 
@@ -168,7 +168,7 @@ As for a SOFTWARE-SPECIFIC TODO list, here's how things are looking:
 * * time (Finish the logic behind this - right now it just uses a dummy value regardless of what is sent via bluetooth
 * * temperature (temperature is stored as a variable but never used. This needs automatic syncing... mostly work for Android app)
 
-## UPDATE 1
+## Update 1
 
 
 https://user-images.githubusercontent.com/27019702/162689365-c6cba215-2a70-41da-a39b-cae65eb1acbe.mp4
@@ -235,7 +235,7 @@ As I said, the next and final week will be all about the hardware. I haven't got
 * * * Touch sensitive button using a nail (or similar) - would be cool but no tactile feedback
 * * * Cherry MX Brown switch - I have some on-hand and the tactile feedback would be hilarious. Might be too bulky though.
 
-## UPDATE 2
+## Update 2
 
 I know I wanted to focus exclusively on hardware, but this last week ended up being something of a mix. There were mainly some bugs with the software I needed to fix before being happy with my work, but I also needed to add software support for the physical "next" button, as well as support for displaying a vehicle's speed/RPM data! Such data will need to be pulled from a car's ODBII port via Bluetooth.
 
