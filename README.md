@@ -16,6 +16,8 @@ The "Telescope" is a DIY smartglass system similar to the Google Glass in form a
 
 Use an M4 screw to screw the pieces together.
 
+![image](https://user-images.githubusercontent.com/27019702/166100073-e835d9a8-9390-4659-8f3d-ce69649822cc.png)
+
 2. Assemble the electronics
 
 You may need to trim some of the wires coming from the microdisplay, but otherwise follow my amerature wiring diagram:
@@ -23,6 +25,14 @@ You may need to trim some of the wires coming from the microdisplay, but otherwi
 [PHOTO HERE]
 
 The TinyPICO has a few ways you can attach a battery (information here: https://www.tinypico.com/gettingstarted#:~:text=POWER%20FROM%20BATTERY). Personally, I soldered the battery's leads to the pads on the back of the device because I accidentally destroyed the BAT pin.
+
+It should look like this, when all's said and done:
+
+![image](https://user-images.githubusercontent.com/27019702/166100152-1be64898-3567-424b-a2f1-9e702ae4f003.png)
+
+Lastly, VERY CAREFULLY slot the whole thing into the "Telescope Computer" module:
+
+![image](https://user-images.githubusercontent.com/27019702/166100176-5dd10037-f704-4ce8-812e-7dfde75a1828.png)
 
 3. Complete the the viewfinder module
 
