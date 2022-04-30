@@ -98,7 +98,9 @@ Link: https://www.aliexpress.com/item/4000032849513.html
 
 I used a 1100mah one fom Amazon, but feel free to get a smaller one (and optionally: modify the "Telescope Computer" model to securely fit it)
 
-## Progress...
+## Devblog
+
+## Update 0
 
 This week was all about getting the basics of the device running along with starting to develop the software.
 
@@ -166,7 +168,7 @@ As for a SOFTWARE-SPECIFIC TODO list, here's how things are looking:
 * * time (Finish the logic behind this - right now it just uses a dummy value regardless of what is sent via bluetooth
 * * temperature (temperature is stored as a variable but never used. This needs automatic syncing... mostly work for Android app)
 
-## UPDATE #1
+## UPDATE 1
 
 
 https://user-images.githubusercontent.com/27019702/162689365-c6cba215-2a70-41da-a39b-cae65eb1acbe.mp4
@@ -233,7 +235,7 @@ As I said, the next and final week will be all about the hardware. I haven't got
 * * * Touch sensitive button using a nail (or similar) - would be cool but no tactile feedback
 * * * Cherry MX Brown switch - I have some on-hand and the tactile feedback would be hilarious. Might be too bulky though.
 
-## UPDATE #2
+## UPDATE 2
 
 I know I wanted to focus exclusively on hardware, but this last week ended up being something of a mix. There were mainly some bugs with the software I needed to fix before being happy with my work, but I also needed to add software support for the physical "next" button, as well as support for displaying a vehicle's speed/RPM data! Such data will need to be pulled from a car's ODBII port via Bluetooth.
 
@@ -286,7 +288,7 @@ This was pretty straightforward but also incredibly obnoxious. In order to keep 
 
 ![top](https://user-images.githubusercontent.com/27019702/163814189-ac4d822d-6f6f-43ee-8975-133b26bfbff0.jpg)
 
-## Update #3
+## Update 3
 
 To finish everything off, this week consisted of a major shell overhaul, adding some buttons to the app, and (FINALLY) horizontally flipping the display.
 
