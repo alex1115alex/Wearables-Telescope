@@ -4,23 +4,78 @@
 
 The "Telescope" is a DIY smartglass system similar to the Google Glass in form and technology.
 
+## Guide to build
+
+1. 3D print and assemble the parts in this repository
+- Telescope Computer
+.12 layer height. Place supports ONLY under the bit with the screw hole that sticks out. See my Cura project file for reference.
+- Telescope Glasses
+.12 layer height. No supports
+- Telescope Viewfinder
+.12 layer height. No supports
+
+Use an M4 screw to screw the pieces together.
+
+2. Assemble the electronics
+
+You may need to trim some of the wires coming from the microdisplay, but otherwise follow my amerature wiring diagram:
+
+[PHOTO HERE]
+
+The TinyPICO has a few ways you can attach a battery (information here: https://www.tinypico.com/gettingstarted#:~:text=POWER%20FROM%20BATTERY). Personally, I soldered the battery's leads to the pads on the back of the device because I accidentally destroyed the BAT pin.
+
+3. Complete the the viewfinder module
+
+Remove the microdisplay from its original casing. You will need to temporarily disconnect the ZIF connector attaching the ribbon cable to the display module in order to do this. Also remove the original magnifying glass from the casing. 
+
+Before removing the casing:
+![image](https://user-images.githubusercontent.com/27019702/166099372-432517a2-381f-477b-8b4a-06c0e811804b.png)
+
+Slide the magnifying glass into the front of the viewfinder you printed, and then glue the beamsplitting cube to the "tounge" using your favorite glass glue (make sure to use the same orientation as seen in the completed photo).
+
+Lastly, slide the microdisplay into the slot in the back.
+
+Complete:
+![image](https://user-images.githubusercontent.com/27019702/166099536-5d1daca7-eb95-48be-b324-0ac1c810783f.png)
+
+
 ## Notable parts list
 
 1. 960x540 Microdisplay
 
-This thing is pretty nifty. It's a .24" 540p microdisplay that was originally intended to be used in cheap budget FPV goggles for flying drones. Outside of being AWESOME, it has one major downside: it only takes a composite video source. Yup. The analouge kind. That unforunately really limits us in terms of what computers we can use for this thing, but, as luck would have it, the ESP32 (unofficially) supports composite video output. Awesome!
+This thing is pretty nifty. It's a .24" 540p microdisplay that would normally be used as a camera's viewfinder or for cheap FPV drone goggles. It only takes a composite video source which limits us in terms of what computers we can use for this thing, but, as luck would have it, the ESP32 (unofficially) supports composite video output.
+
+I got mine on AliExpress (https://www.aliexpress.com/item/4000958970634.html) but you might also be able to get it directly from the manufacturer if you know Chinese. The model is "FLCOS-SON-FL08".
+
+### Potential money saving tip:
+
+Although I haven't found many other options, you don't necessarily need to use the SON-FL08. For example, I found another microdisplay by the same company called the "SON-FL02" which is lower resolution (but can be cheaper). The display library we're using only supports 240p anyway so that shouldn't matter. Doing this would require you modify the "Telescope Viewfinder" model, of course.
 
 2. TinyPICO
 
-This is an ESP32 derivative with a few key features that we'll need for this project:
+This is an ESP32 derivative with a few key features:
 
-* It has built-in support for battery usage and charging
-* It's super power efficient
-* It's freaking tiny
+* Built-in support for battery usage and charging
+* Super power efficient AND has a very stable voltage output
+* Freaking tiny
+
+Get one from Amazon or https://unexpectedmaker.com/shop
 
 3. Beamsplitting cube prism
 
-This is a cube that reflects light at 90 degrees. I'm not a physics major so I don't really know how it works past that, but the main point is that we're using it as the viewfinder. 
+This is a cube that lets light through in all directions while also reflecting light 90 degrees from a single direction. It's a little hard to explain.
+
+I used a 10mm\*10mm cube, but you might want to consider getting a 15mm\*15mm cube in order to make the display easier to see while moving.
+
+Mine: https://www.aliexpress.com/item/2255800715557324.html
+
+4. LiPo battery of your choice
+
+### Potential money saving tip:
+
+I've heard you can use a triangular beamsplitter instead of a cube. It won't look as nice, but it can also save you ~$10.
+
+Link: https://www.aliexpress.com/item/4000032849513.html
 
 ## Progress...
 
