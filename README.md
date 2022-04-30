@@ -1,5 +1,9 @@
 # Project Telescope
 
+## What's this?
+
+The "Telescope" is a DIY smartglass system similar to the Google Glass in form and technology.
+
 ## Notable parts list
 
 1. 960x540 Microdisplay
