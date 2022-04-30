@@ -6,22 +6,17 @@ The "Telescope" is a DIY smartglass system similar to the Google Glass in form a
 
 ## Guide to build
 
-### 3D print and assemble the parts in this repository
-* Telescope Computer
-
-.12 layer height. Place supports ONLY under the bit with the screw hole that sticks out. See my Cura project file for reference.
-
-* Telescope Glasses
-
-12 layer height. No supports
-
-* Telescope Viewfinder
-
-.12 layer height. No supports
+1. 3D print and assemble the parts in this repository
+- Telescope Computer
+- - .12 layer height. Place supports ONLY under the bit with the screw hole that sticks out. See my Cura project file for reference.
+- Telescope Glasses
+- - .12 layer height. No supports
+- Telescope Viewfinder
+- - .12 layer height. No supports
 
 Use an M4 screw to screw the pieces together.
 
-### Assemble the electronics
+2. Assemble the electronics
 
 You may need to trim some of the wires coming from the microdisplay, but otherwise follow my amerature wiring diagram:
 
@@ -29,7 +24,7 @@ You may need to trim some of the wires coming from the microdisplay, but otherwi
 
 The TinyPICO has a few ways you can attach a battery (information here: https://www.tinypico.com/gettingstarted#:~:text=POWER%20FROM%20BATTERY). Personally, I soldered the battery's leads to the pads on the back of the device because I accidentally destroyed the BAT pin.
 
-### Complete the the viewfinder module
+3. Complete the the viewfinder module
 
 Remove the microdisplay from its original casing. You will need to temporarily disconnect the ZIF connector attaching the ribbon cable to the display module in order to do this. Also remove the original magnifying glass from the casing. 
 
