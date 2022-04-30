@@ -316,3 +316,5 @@ So, I scrapped the flipping idea and went with something even more hacky: make a
 The new shell is awesome. It's basically the original except made to be as small as possible (form fit to the parts), and built around a 3D model of the original Google Glass frame. It really gets close to the original Google Glass!
 
 It comes in two pieces this time that can be screwed together - the "Computer" and "Glasses". This is a really awesome feature as it will allow me (and you!) to design your own "Glasses"... just use the same connector!
+
+![image](https://user-images.githubusercontent.com/27019702/166119307-99749c45-14c4-44c5-9cc1-54dd899dd635.png)
