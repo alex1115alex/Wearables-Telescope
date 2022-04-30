@@ -4,7 +4,7 @@
 
 ## What's this?
 
-The "Telescope" is a DIY smartglass system similar to the Google Glass in form and technology.
+The "Telescope" is a DIY smartglass system similar to the Google Glass in form and technology. It currently displays the time and your phone's notifications and can also function as a teleprompter.
 
 ## Guide to build
 
