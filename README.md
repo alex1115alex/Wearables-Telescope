@@ -8,7 +8,7 @@ The "Telescope" is a DIY smartglass system similar to the Google Glass in form a
 
 ## Guide to build
 
-1. 3D print and assemble the parts in this repository
+### 3D print and assemble the parts in this repository
 - Telescope Computer
 - - .12 layer height. Place supports ONLY under the bit with the screw hole that sticks out. See my Cura project file for reference.
 - Telescope Glasses
@@ -20,7 +20,7 @@ Use an M4 screw to screw the pieces together.
 
 ![image](https://user-images.githubusercontent.com/27019702/166100073-e835d9a8-9390-4659-8f3d-ce69649822cc.png)
 
-2. Assemble the electronics
+### Assemble the electronics
 
 You may need to trim some of the wires coming from the microdisplay, but otherwise follow my amerature wiring diagram:
 
