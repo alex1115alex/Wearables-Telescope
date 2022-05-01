@@ -57,6 +57,8 @@ Complete (this picture is from an older version of the device, but the viewfinde
 Libraries:
 * ESP_8_BIT_Composite_Video
 * Adafruit_GFX
+* ArduinoJSON
+* TinyPICO
 
 ### Install the companion app (Android only) and open it in
 
