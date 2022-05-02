@@ -320,3 +320,29 @@ The new shell is awesome. It's basically the original except made to be as small
 It comes in two pieces this time that can be screwed together - the "Computer" and "Glasses". This is a really awesome feature as it will allow me (and you!) to design your own "Glasses"... just use the same connector!
 
 ![image](https://user-images.githubusercontent.com/27019702/166119307-99749c45-14c4-44c5-9cc1-54dd899dd635.png)
+
+## Update 4 (the PICO update - ba dum tss)
+
+I was planning on using the Telescope for a different class's project which required some improvements. Here they are in no particular order.
+
+### Theme now defaults to the light theme
+
+### Improved text drawing code to reduce weird errors
+
+This still needs a little bit of work (eg: padding partial lines with space characters to make them draw on the left side of the screen)
+
+### JSON error detection
+
+TelescopeOS now makes sure incoming JSON is valid before trying to use it, saving us from crashes. In the event of invalid JSON, the user is alerted using the new "System Popup" screen.
+
+### Improvements + comments on how different screens work
+
+The "next" button now returns the user to the home screen when they're on the Teleprompter, Car, or the System Popup screen.
+
+### Teleprompter screen improvements
+
+I made the teleprompter screen its own distinct thing, as opposed to just a wrapper for "drawMiddle()".
+
+### Random dumb drink name generation function in the app
+
+I wanted to use the Telescope for another project, so I added a function to the app (which also works as a demo for the teleprompter function) that generates a dumb fake drink name and sends it to the device. Drink names range from "incredibly dumb" to "incredibly inappropriate". If someone ever uses this, have fun :D
