@@ -1,4 +1,4 @@
-# Wearables (Fashon)
+# Wearables (Fashion)
 
 This week I tooled around with adapting different 3D printable glasses frames from Thingiverse to the Telescope.
 
