@@ -125,14 +125,14 @@ complete with a corresponding "Notification" class to keep the organization and 
 
 
 Once that was done, I started exploring one of the most important features - sending notifications from my Android phone to the ESP32!
-I'll need an app that will run in the background, capture my notifications, and then send them to ESP32 via Bluetooth. Speaking of which, there are some relevant Flutter libraries for this, so that'll hopefully be easy when I get around to it. 
+I'll need an app that will run in the background, capture my notifications, and then send them to the ESP32 via Bluetooth. There are a few Flutter libraries for this, so that'll hopefully be easy when I get around to it. 
 
-On the ESP32 side of things, I started setting up Bluetooth connectivity, which seemed super easy at first. 
+On the ESP32 side of things, I started setting up Bluetooth connectivity which seemed super easy at first. 
 However, things are never as easy as they seem, and I quickly found that the Bluetooth stops working once I start outputting video...
 
 ![image](https://user-images.githubusercontent.com/27019702/161512313-b1ec0475-73b7-41b2-8d49-17912f0cc89b.png)
 
-Queue me spending about 8 hours trying to diagnose the problem. I tried using BLE instead of Classic, investigated using a separate Bluetooth module, and even manually separated the Bluetooth and video output tasks to separate cores with every possible configuration. In a last-ditch effort, I tried using my TinyPICO instead... and it paired with my phone perfectly. Turns out, the generic ESP32 just didn't have enough RAM to pair with Bluetooth. Goddamnit.
+Queue me spending about 8 hours trying to diagnose the problem. I tried using BLE instead of Classic, investigated using a separate Bluetooth module, and even manually separated the Bluetooth and video output tasks to separate cores with every possible configuration. In a last-ditch effort, I tried using my TinyPICO instead... and it paired with my phone perfectly. Turns out, the generic ESP32 just didn't have enough RAM to open a Bluetooth connection and output video at the same time. Goddamnit.
 
 You would think it would be smooth sailing from there, but it turns out that while the TinyPICO has enough memory for Bluetooth pairing, it doesn't have enough to maintain a connection. Fortunately, I found that I could reduce my memory usage by freeing the memory pertaining to BLE. This fixed the problem. Still, that's not a lot of memory to work with. I think I'll have to investigate freeing other unused modules' memory. Anyway, it works! 
 
@@ -140,11 +140,11 @@ You would think it would be smooth sailing from there, but it turns out that whi
 https://user-images.githubusercontent.com/27019702/161512519-5b5b7ee5-1f59-4cb5-8c88-aafe5ebc0273.mp4
 
 
-I spent the rest of my time this week working on the software, which I'm calling TelescopeOS for now... very original. To do this more efficiently, I ditched the microdisplay for now and started using a composite to USB capture card which lets me view the ESP32's video output on my computer. If that sounds like an extra step for little reason, you should try developing a GUI on a .24inch screen connected with a delicate ribbon cable that can't be replaced by April 29th.
+I spent the rest of my time this week working on the software, which I'm calling TelescopeOS. To do this more efficiently, I ditched the microdisplay for now and started using a composite to USB capture card which lets me view the ESP32's video output on my computer. If that sounds like an extra step for little reason, you should try developing a GUI on a .24inch screen connected with a delicate ribbon cable that - if broken - can't be replaced by the due date.
 
 ![image](https://user-images.githubusercontent.com/27019702/161509228-904db5aa-9c5c-4e7a-8513-d0e286be7ed8.png)
 
-Progress on the software is far from over, however, and now that the capture card is set up I'll be working on it over the next few days. 
+Progress on the software is far from over, however, and now that the capture card is setup I'll be working on it over the next few days. 
 
 Software-specific "What I have now" list:
 * Home screen
