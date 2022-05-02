@@ -331,7 +331,7 @@ Much to my chagrin, the cyberpunk theme just wasn't it.
 
 ### Improved text drawing code to reduce weird errors
 
-This still needs a little bit of work (eg: padding partial lines with space characters to make them draw on the left side of the screen)
+I fixed an issue where the first character of a multi-line string would print on its own line. I also made everything print left-to-right (finally!) by padding partial lines with space characters.
 
 ### JSON error detection
 
@@ -343,8 +343,8 @@ The "next" button now returns the user to the home screen when they're on the Te
 
 ### Teleprompter screen improvements
 
-I made the teleprompter screen its own distinct thing, as opposed to just a wrapper for "drawMiddle()".
+I made the Teleprompter screen its own distinct thing, as opposed to just a wrapper for "drawMiddle()" (which now no longer exists).
 
 ### Random dumb drink name generation function in the app
 
-I wanted to use the Telescope for another project, so I added a function to the app (which also works as a demo for the teleprompter function) that generates a dumb fake drink name and sends it to the device. Drink names range from "incredibly dumb" to "incredibly inappropriate". If someone ever uses this, have fun :D
+I wanted to use the Telescope for another project, so I added a function to the app (which also works as a demo for the Teleprompter function) that generates a dumb fake drink name and sends it to the device. Drink names range from "incredibly dumb" to "incredibly inappropriate". If someone ever uses this, have fun :D
