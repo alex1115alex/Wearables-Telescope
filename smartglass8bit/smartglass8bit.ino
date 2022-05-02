@@ -12,7 +12,6 @@
 #include <ArduinoJson.h>
 #include <TinyPICO.h>
 #include <cstddef>
-#include <Fonts/FreeSans18pt7b.h>
 #include "myfont6pt7b.h"
 
 using std::vector;
@@ -218,7 +217,7 @@ void loop() {
     auto error = deserializeJson(doc, input);
     if(error)
     {
-      drawSystemPopup("JSON error");
+      drawSystemPopup("JSON error", true);
     }
     else
     {      
@@ -285,7 +284,7 @@ void loop() {
   videoOut.waitForFrame();
 
   if (!bluetoothConnected)
-    drawSystemPopup("Connect Bluetooth", skippable = false);
+    drawSystemPopup("Connect Bluetooth", false);
   else if (currentScreen == -3)
     drawTeleprompter();
   else if (currentScreen == -2)
@@ -320,7 +319,8 @@ String getPrintableTime(){
   return printableTime;
 }
 
-void drawSystemPopup(String str, bool skippable = true)
+void drawSystemPopup(String str, bool skippable = true);
+void drawSystemPopup(String str, bool skippable)
 {
   if (skippable)
     currentScreen = -5;
@@ -482,7 +482,7 @@ void vidPrint(String myStr)
   
   if(n <= maxChars)
   {
-    videoOut.print(reverseString(str));
+    videoOut.print(reverseString(str, -1));
     return;
   }
 
@@ -498,14 +498,14 @@ void vidPrint(String myStr)
   {
     temp += str[i];  
     if(i % maxChars == 0 || i == n - 1) {   //if we've hit the end of the line or there's no more text...
-      videoOut.print(reverseString(temp), prependSpacesToReachLength = maxChars);
+      videoOut.print(reverseString(temp, maxChars));
       temp = "";
       videoOut.setCursor(originalCursorX, cursorY += 20);
     }
   }
 }
 
-String reverseString(String str, int prependSpacesToReachLength = -1)
+String reverseString(String str, int prependSpacesToReachLength)
 {
   const int n = str.length();
   String reversed = "";
