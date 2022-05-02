@@ -1,8 +1,10 @@
 # Wearables (Fashon)
 
-This week I tooled around with adapting different 3D printable glasses frames to the Telescope.
+This week I tooled around with adapting different 3D printable glasses frames from Thingiverse to the Telescope.
 
-Fancy 1:
+I didn't quite have the time to go super in-depth with this, but the end goal here is finding a design that can fit standard lenses as well as be wearable in public without looking like a dork.  
+
+Fancy 1 (based on the Ray Ban Wayfarer):
 
 ![image](https://user-images.githubusercontent.com/27019702/166180925-90349767-f133-4648-9575-d606be2c6905.png)
 
