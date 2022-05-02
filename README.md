@@ -327,6 +327,8 @@ I was planning on using the Telescope for a different class's project which requ
 
 ### Theme now defaults to the light theme
 
+Much to my chagrin, the cyberpunk theme just wasn't it.
+
 ### Improved text drawing code to reduce weird errors
 
 This still needs a little bit of work (eg: padding partial lines with space characters to make them draw on the left side of the screen)
