@@ -121,7 +121,7 @@ int buttonPressed;
 bool buttonReset = true;
 int currentTime = 0;
 int currentTemperature = -1;
-int currentNotification = -1;
+int currentScreen = -1;
 String currentSongName = "";
 bool isCharging = false;
 bool bluetoothConnected = false;
@@ -154,29 +154,29 @@ void setup() {
 
   printDeviceAddress();
 
-  //custom backwards font because this is somehow the easiest way to mirror the screen ...
+  //custom backwards font because this is somehow the easiest way to (at least appear to) flip the screen horizontally ...
   videoOut.setFont(&myfont6pt7b);
 }
 
-
+// ==== CurrentScreen Guide: ====
 //-5 SYSTEM POPUP
-//-4 CONNECT BLUETOOTH
+//-4 PERMANANT SYSTEM POPUP
 //-3 TELEPROMPTER
 //-2 CAR
 //-1 HOME SCREEN
 //1->x NOTIFICATIONS
 void nextButton(bool alsoDeleteNotif = false) {
-  if (currentNotification == -2 || currentNotification == -3 || currentNotification == -5)
+  if (currentScreen == -2 || currentScreen == -3 || currentScreen == -5)
   {
     //Reserved for apps
-    currentNotification = -1;
+    currentScreen = -1;
   }
-  else if (currentNotification == -1 && !notifications.empty())
+  else if (currentScreen == -1 && !notifications.empty())
   {
-    currentNotification = notifications.size() - 1;
+    currentScreen = notifications.size() - 1;
   }
-  else if (currentNotification >= 0) {
-    currentNotification--;
+  else if (currentScreen >= 0) {
+    currentScreen--;
 
     if (alsoDeleteNotif)
       notifications.pop_back();
@@ -184,15 +184,14 @@ void nextButton(bool alsoDeleteNotif = false) {
 }
 
 void loop() {
-  //Serial.println("Port22: ");
-  //Serial.print(digitalRead(22));
   isCharging = tp.IsChargingBattery();
   if(usbPluggedIn != digitalRead(9))
   {
     ESP.restart();
   }
   Serial.println(touchRead(32));
-  //if buttonPressed is off AND the button is pressed => PressNext, set buttonPressed to on.
+
+  //if buttonPressed is off (1) and the button is physically pressed, then we have an individual button press.
   if(buttonPressed == 1 && (touchRead(32) < 20))
   {
       buttonPressed = 0;
@@ -202,37 +201,32 @@ void loop() {
   {
     buttonPressed = 1;
   }
-  
-  //Serial.println("Is the battery charging? :" + String(isCharging));
-  //TODO: if 30 seconds has passed, reset currentNotificaion = -1
 
   //if we have information to send from serial port
   if (Serial.available()) {
     SerialBT.write(Serial.read());
   }
 
-  //if information is available from BT serial port
+  //if information is available to read from BT serial port
   if (SerialBT.available()) {
 
     String input = SerialBT.readString();
     Serial.println(input);
 
     DynamicJsonDocument doc(512);
+    
     auto error = deserializeJson(doc, input);
-
     if(error)
     {
       drawSystemPopup("JSON error");
     }
     else
-    {
-      
-    JsonObject obj = doc.as<JsonObject>();
-
+    {      
+      JsonObject obj = doc.as<JsonObject>();
     
       if (obj["type"] == "notif") {
         notifications.push_back(Notification(obj["title"], obj["content"], obj["time"]));
-        currentNotification = notifications.size() - 1;
+        currentScreen = notifications.size() - 1;
       }
       else if (obj["type"] == "sync")
       {
@@ -261,7 +255,7 @@ void loop() {
       {
         speed = obj["speed"].as<int>();
         rpm = obj["rpm"].as<int>();
-        currentNotification = -2;
+        currentScreen = -2;
       }
       else if (obj["type"] == "theme")
       {
@@ -273,47 +267,45 @@ void loop() {
       else if (obj["type"] == "teleprompter")
       {
         teleprompterData = obj["data"].as<String>();
-        currentNotification = -3;
+        currentScreen = -3;
       }
     }
   }
   delay(20);
 
-//-5 SYSTEM POPUP
-//-4 CONNECT BLUETOOTH
-//-3 TELEPROMPTER
-//-2 CAR
-//-1 HOME SCREEN
-//1->x NOTIFICATIONS
+
+  //-5 | SYSTEM POPUP
+  //-4 | PERMANANT SYSTEM POPUP
+  //-3 | TELEPROMPTER
+  //-2 | CAR
+  //-1 | HOME SCREEN
+  //0+ | NOTIFICATIONS
 
   //HANDLE VIDEO OUTPUT
   videoOut.waitForFrame();
 
-  if (!bluetoothConnected){
-    videoOut.setTextWrap(true);
-    drawMiddle("Connect Bluetooth");
-    currentNotification = -4;
-    }
-  else if (currentNotification == -3)
+  if (!bluetoothConnected)
+    drawSystemPopup("Connect Bluetooth", skippable = false);
+  else if (currentScreen == -3)
     drawTeleprompter();
-  else if (currentNotification == -1) //home screen
+  else if (currentScreen == -2)
+  drawCarScreen();
+  else if (currentScreen == -1) //home screen
     drawHomeScreen();
-  else if (currentNotification == -2)
-    drawCarScreen();
-  else if (currentNotification > -1)
-    drawNotification(notifications[currentNotification]);
+  else if (currentScreen > -1)
+    drawNotification(notifications[currentScreen]);
   
   //Serial.println(ESP.getFreeHeap());
 }
 
 int getHorPosForText(String str, int textSize)
 {
-  return maxW / 2 - ((str.length() * textSize * 5) / 2);
+  return maxW / 2 - ((str.length() * textSize * 6) / 2);
 }
 
 int getVertPosForText(String str, int textSize)
 {
-  return maxH / 2 - (textSize * 7) / 2;
+  return maxH / 2 - (textSize * 8) / 2;
 }
 
 String addPrefixZero(String str) {
@@ -328,10 +320,21 @@ String getPrintableTime(){
   return printableTime;
 }
 
-void drawSystemPopup(String str)
+void drawSystemPopup(String str, bool skippable = true)
 {
-  currentNotification = -5;
-  drawMiddle(str);
+  if (skippable)
+    currentScreen = -5;
+  else
+    currentScreen = -4;
+  
+  videoOut.fillScreen(0);
+  videoOut.setCursor(0, 0);
+  videoOut.setTextColor(currentTheme.textColor);
+  videoOut.setTextSize(2);
+  videoOut.setTextWrap(true);
+  videoOut.fillRect(0, 0, maxW, maxH, currentTheme.backgroundColorPrimary);
+  videoOut.setCursor(getHorPosForText(str, 2), getVertPosForText(str, 2));
+  vidPrint(str);
 }
 
 void drawCarScreen()
@@ -343,7 +346,6 @@ void drawCarScreen()
   }
   videoOut.fillScreen(0);
   videoOut.setCursor(0, 0);
-  videoOut.setTextWrap(true);
 
   videoOut.fillRect(0, 0, maxW, maxH, currentTheme.backgroundColorPrimary);
 
@@ -402,7 +404,6 @@ void drawNotification(Notification notification)
 
   videoOut.setTextColor(currentTheme.textColor);
   videoOut.setTextSize(2);
-  videoOut.setTextWrap(true);
 
   //top rect, title
   videoOut.fillRect(0, 0, maxW, dividerH, currentTheme.backgroundColorSecondary);
@@ -434,17 +435,6 @@ void drawTeleprompter(){
   vidPrint(teleprompterData);
 }
 
-void drawMiddle(String str) {
-  videoOut.fillScreen(0);
-  videoOut.setCursor(0, 0);
-  videoOut.setTextColor(currentTheme.textColor);
-  videoOut.setTextSize(2);
-  videoOut.setTextWrap(true);
-  videoOut.fillRect(0, 0, maxW, maxH, currentTheme.backgroundColorPrimary);
-  videoOut.setCursor(getHorPosForText(str, 2), getVertPosForText(str, 2));
-  vidPrint(str);
-}
-
 void printDeviceAddress() {
 
   const uint8_t* point = esp_bt_dev_get_address();
@@ -463,67 +453,69 @@ void printDeviceAddress() {
   }
 }
 
+//detects whether we've connected or disconnected from Bluetooth
 void disconnectCallback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param) {
-  if (event == ESP_SPP_SRV_OPEN_EVT) {
+  if (event == ESP_SPP_SRV_OPEN_EVT) { //Connected
     Serial.println("Client Connected");
     bluetoothConnected = true;
-    currentNotification = -1;
+    currentScreen = -1;
   }
 
-  if (event == ESP_SPP_CLOSE_EVT ) {
+  if (event == ESP_SPP_CLOSE_EVT ) { //Disconnected
     Serial.println("Client disconnected");
-    drawMiddle("Lost connection");
-    //delay(3000);
+    drawSystemPopup("Lost connection");
 
-    //For some reason ESP32 can't reconnect to Bluetooth after the first/only client disconnects and needs a total reboot. TODO: fix this hacky shit
+    //For some reason ESP32 can't reconnect to Bluetooth after the first/only client disconnect... Needs a total reboot. 
+    //TODO: fix this hacky shit
     ESP.restart();
   }
 }
-int maxChars = 17;
+
+const int maxChars = 17; //at text size == 2, we can display maxChars characters per line
 void vidPrint(String myStr)
 {
   if(myStr == NULL) return;
   String str = myStr;
   int n = str.length();
-  int originalCursorX = videoOut.getCursorX();
+  const int originalCursorX = videoOut.getCursorX();
   int cursorY = videoOut.getCursorY();
-  //at text size == 2, we can display 20 characters
   
-  if(n < 18)
+  if(n <= maxChars)
   {
-    oneLineVidPrint(str);
+    videoOut.print(reverseString(str));
     return;
   }
-  
-  //This fixes a bug where the first letter of a string is printed on its own line.
-  //I couldn't figure out where the issue lies, so I just prepend a space character lmfao
-  str = " " + str; 
-  n = str.length();
-  
+
+  /* 
+    This writes a multi-line string backwards and manually does text wrapping
+  */
+
+  str = " " + str;  //This fixes a bug where the first letter of a string is printed on its own line.
+  n = str.length(); //I couldn't figure out where the issue lies, so I just prepend a space character lmfao
   videoOut.setTextWrap(false);
-  //int charsUntilEdge = maxChars; //assume textSize==2
   String temp = "";
   for(int i = 0; i < n; i++)
   {
-    temp += str[i];
-    if(i % maxChars == 0 || i == n - 1) {
-      videoOut.print(reverseStr(temp));
+    temp += str[i];  
+    if(i % maxChars == 0 || i == n - 1) {   //if we've hit the end of the line or there's no more text...
+      videoOut.print(reverseString(temp), prependSpacesToReachLength = maxChars);
       temp = "";
       videoOut.setCursor(originalCursorX, cursorY += 20);
     }
   }
 }
 
-void oneLineVidPrint(String str){
-    videoOut.print(reverseStr(str));
-}
-
-String reverseStr(String str)
+String reverseString(String str, int prependSpacesToReachLength = -1)
 {
-  int n = str.length();
- String reversed = "";
-  for(int i = n - 1; i > -1; i--){
+  const int n = str.length();
+  String reversed = "";
+
+  if(prependSpacesToReachLength > -1)
+    for(int i = 0; i < prependSpacesToReachLength - n; i++)
+      reversed += " ";
+
+  for(int i = n - 1; i > -1; i--)
     reversed += str[i];
-  }
+
   return reversed;
 }
