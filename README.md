@@ -78,13 +78,20 @@ Although I haven't found many other options, you don't necessarily need to use t
 
 ### TinyPICO
 
-This is an ESP32 derivative with a few key features:
+This is an ESP32 devboard with a few key features:
 
 * Built-in support for battery usage and charging
 * Super power-efficient AND has a very stable voltage output
 * Freaking tiny
 
 Get one at https://www.tinypico.com/buy
+
+## NOTE: EXTREMELY IMPORTANT! DO NOT SKIP!
+
+Make sure you buy the original TinyPico, which uses a chip (ESP-PICO-D4) based on the original ESP32. Why? The original ESP32 has an integrated DAC, which is what we use to output a composite video stream to our microdisplay. 
+
+Do not buy a TinyS2! It is based on the ESP32-S2 and is single-core only.
+Do not buy a TinyS3! It is based on the ESP32-S3 and does NOT have an integrated DAC.
 
 ### Beam splitting cube prism
 
