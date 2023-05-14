@@ -88,7 +88,7 @@ Get one at https://www.tinypico.com/buy
 
 ## NOTE: EXTREMELY IMPORTANT! DO NOT SKIP!
 
-Make sure you buy the original TinyPico, which uses a chip (ESP-PICO-D4) based on the original ESP32. Why? The original ESP32 has an integrated DAC, which is what we use to output a composite video stream to our microdisplay. 
+Make sure you buy the original TinyPico, which uses a chip (ESP32-PICO-D4) based on the original ESP32. Why? The original ESP32 has an integrated DAC, which is what we use to output a composite video stream to our microdisplay. 
 
 Do not buy a TinyS2! It is based on the ESP32-S2 and is single-core only.
 Do not buy a TinyS3! It is based on the ESP32-S3 and does NOT have an integrated DAC.
